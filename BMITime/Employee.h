@@ -7,14 +7,20 @@
 //
 
 #import "Person.h"
-
+@class Asset;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Employee : Person
 {
-    int employeeID;
+  int employeeID;
+  NSMutableArray *assets;
+  //NSString *lastName;
+  //Person * spouse;
+  //NSMutableArray *children;
 }
 @property int employeeID;
+- (void)addAssetsObject:(Asset *)a;
+- (unsigned int)valueOfAssets;
 @end
 
 NS_ASSUME_NONNULL_END
