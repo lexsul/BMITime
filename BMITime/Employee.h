@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Employee : Person
 {
   int employeeID;
-  NSMutableArray *assets;
+  NSMutableSet *assets;
   //NSString *lastName;
   //Person * spouse;
   //NSMutableArray *children;

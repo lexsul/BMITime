@@ -23,6 +23,9 @@ int main(int argc, const char * argv[]) {
         NSLog(@"Emloyee %d has a BMI of %f",[person employeeID],bmi);
  */
     NSMutableArray *employees = [[NSMutableArray alloc] init];
+    NSMutableDictionary *executives = [[NSMutableDictionary alloc] init];
+    
+    
     for (int i = 0; i < 10; i++) {
       Employee *person = [[Employee alloc] init];
       [person setWeigthInKilos:90 + i];
@@ -30,6 +33,13 @@ int main(int argc, const char * argv[]) {
       [person setEmployeeID:i];
       
       [employees addObject:person];
+      if (i==0) {
+        [executives setObject:person forKey:@"CEO"];
+      }
+      if (i==1) {
+        [executives setObject:person forKey:@"CTO"];
+      }
+        
     }
     NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets" ascending:YES];
     NSSortDescriptor *ei = [NSSortDescriptor sortDescriptorWithKey:@"employeeID" ascending:YES];
@@ -53,6 +63,16 @@ int main(int argc, const char * argv[]) {
     NSLog(@"Giving up ownership of one employee");
     [employees removeObjectAtIndex:5];
     NSLog(@"Giving up ownership of array");
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 70"];
+    
+    NSArray *toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+    
+    NSLog(@"toBeReclaimed: %@", toBeReclaimed);
+    NSLog(@"executives: %@", executives);
+    
+    executives = nil;
+    toBeReclaimed = nil;
     allAssets = nil;
     employees = nil;
 }
